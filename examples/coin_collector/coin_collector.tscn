@@ -17,8 +17,6 @@ offset_right = 183.0
 offset_bottom = 110.0
 
 [node name="CounterDisplay" parent="UI" instance=ExtResource("1_8426u")]
-position = Vector2(58, 37)
-scale = Vector2(3, 3)
 
 [node name="CoinSpawner" type="Node2D" parent="."]
 position = Vector2(1200, 600)
