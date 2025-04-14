@@ -12,10 +12,13 @@ signal void_update()
 @export var ingress: Cable
 
 func _ready() -> void:
+	ingress.debug_log("Consumer<%s> link_to_node_lifetime" % str(self))
 	ingress.link_to_node_lifetime(self, _on_cable_value_update)
 
 func _on_cable_value_update(value: Variant) -> void:
 	if Cable.is_void_event(value):
+		ingress.debug_log("Consumer<%s> void_update" % str(self))
 		void_update.emit()
 	else:
+		ingress.debug_log("Consumer<%s> value_updated(%s)" % [str(self), str(value)])
 		value_updated.emit(value)

@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_chha0")
+replay_on_link = false
+debug_trace = true
+debug_description = ""
 metadata/_custom_type_script = "uid://bu8qa53bmqorh"

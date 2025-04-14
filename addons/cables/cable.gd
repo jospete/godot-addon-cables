@@ -27,6 +27,9 @@ signal _value_updated(value: Variant)
 ## is ready to start watching for changes.
 @export var replay_on_link := false
 
+## When true, will print all interactions with this cable to the console
+@export var debug_trace := false
+
 ## Optional description indicating intended use of
 ## this particular cable resource.
 ## This is for documentation purposes only, to
@@ -46,6 +49,9 @@ var current_value: Variant:
 	get: return _current_value
 	set(value): notify(value)
 
+func debug_log(message: String) -> void:
+	if debug_trace: print("[%s] %s" % [resource_path.get_file(), message])
+
 ## Produce a new value to be passed on to any `CableValueConsumer` instances.
 func notify(value: Variant) -> void:
 	_value_updated.emit(value)
@@ -57,6 +63,7 @@ func notify(value: Variant) -> void:
 ## and does not need to supply any specific value change
 ## (e.g. for a `player death` event).
 func void_notify() -> void:
+	debug_log("void_notify()")
 	notify(VOID_EVENT)
 
 ## Registers the given `Callable` to this cable.
@@ -73,9 +80,11 @@ func void_notify() -> void:
 ## the originally passed in `Callable` function.
 func link(callable: Callable) -> Callable:
 	if not _value_updated.is_connected(callable):
+		debug_log("link")
 		_value_updated.connect(callable)
 	
 	if replay_on_link and did_emit_once:
+		debug_log("replay_on_link")
 		callable.call(current_value)
 	
 	var unlink_action := func(): unlink(callable)
@@ -86,6 +95,7 @@ func link(callable: Callable) -> Callable:
 ## Does nothing if the `Callable` is not connected.
 func unlink(callable: Callable) -> void:
 	if _value_updated.is_connected(callable):
+		debug_log("unlink")
 		_value_updated.disconnect(callable)
 
 ## Links the given `Callable`, and will automatically unlink it
@@ -95,5 +105,6 @@ func unlink(callable: Callable) -> void:
 ## This is a more optimal alternative to `tree_enterd` / `tree_exiting` events,
 ## which may fire multiple times if a node is reparented one or more times.
 func link_to_node_lifetime(node: NodeWithLifetime, callable: Callable) -> void:
+	debug_log("link_to_node_lifetime(%s)" % node.name)
 	var unlink_action := link(callable)
 	node.node_destroyed.connect(unlink_action)
