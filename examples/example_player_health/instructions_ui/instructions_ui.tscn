@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://wwt8j4xdtq71"]
+
+[ext_resource type="Script" uid="uid://bkiohju8ji34k" path="res://examples/example_player_health/instructions_ui/instructions_ui.gd" id="1_ye81d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ye81d"]
+font_size = 30
+
+[node name="InstructionsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ye81d")
+action_name = &"action1"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press {action} to damage player"
+label_settings = SubResource("LabelSettings_ye81d")
+horizontal_alignment = 1
+vertical_alignment = 1

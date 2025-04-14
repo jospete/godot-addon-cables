@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc2a7d32qcv7k"]
+
+[ext_resource type="Script" uid="uid://dbuy0tacpqbq6" path="res://examples/example_coin_collector/counter_display/counter_display.gd" id="1_bkxt3"]
+[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/cable_value_consumer.gd" id="2_giypm"]
+[ext_resource type="Resource" uid="uid://dsgcjj0o1cabr" path="res://examples/example_coin_collector/score_cable.tres" id="3_jpfne"]
+
+[node name="CounterDisplay" type="Node2D"]
+script = ExtResource("1_bkxt3")
+
+[node name="CountConsumer" type="Node" parent="."]
+script = ExtResource("2_giypm")
+ingress = ExtResource("3_jpfne")
+metadata/_custom_type_script = "uid://duwq1cmdr5cie"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 50.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="value_updated" from="CountConsumer" to="." method="_on_count_listener_next"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Cable" load_steps=2 format=3 uid="uid://dsgcjj0o1cabr"]
 
-[ext_resource type="Script" path="res://addons/cables/cable.gd" id="1_34e0y"]
+[ext_resource type="Script" uid="uid://bu8qa53bmqorh" path="res://addons/cables/cable.gd" id="1_34e0y"]
 
 [resource]
 script = ExtResource("1_34e0y")

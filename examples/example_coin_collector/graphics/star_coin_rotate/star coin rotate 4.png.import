@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co3wh46273xxw"
-path="res://.godot/imported/star coin rotate 3.png-a53c62d39e8164c9a8782fa2e9bd8e7f.ctex"
+uid="uid://cybe8rd88giqv"
+path="res://.godot/imported/star coin rotate 4.png-f51accaa633a5c165553829c5365d847.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://examples/coin_collector/graphics/star_coin_rotate/star coin rotate 3.png"
-dest_files=["res://.godot/imported/star coin rotate 3.png-a53c62d39e8164c9a8782fa2e9bd8e7f.ctex"]
+source_file="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 4.png"
+dest_files=["res://.godot/imported/star coin rotate 4.png-f51accaa633a5c165553829c5365d847.ctex"]
 
 [params]
 

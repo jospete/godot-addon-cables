@@ -1,45 +1,34 @@
 # godot-addon-cables
 
-Signals transfer values, Cables transfer Signals
+A Godot plugin to serve as an alternative to [Autoload Event Buses](https://www.gdquest.com/tutorial/godot/design-patterns/event-bus-singleton/),
+primarily targeted for developers that [disagree with singleton pattern usage](https://stackoverflow.com/a/138012)
+and dislike the idea of an infinitely expanding singleton class.
 
-This addon solves the problem of signal connections getting broken when refactoring a world scene comprised of smaller "prefab" scenes. This is possible with the new `Cable` construct.
+The implementation of this addon is very much inspired by [Ryan Hipple's 2017 Talk](https://www.youtube.com/watch?v=raQ3iHhE_Kk)
+on using Unity `ScriptableObject`s as an alternative to singletons.
 
-Normally for global event transfer we would just use a singleton script that acts as en event bus and proxies signal calls out to other listeners. However, this is rife with potential errors and renaming / reconfiguring these event functions is near impossible when the project is very large.
+## Pros of Using Cables
 
-`Cable` resources solve this problem by breaking out each function that would be on that giant global event bus singleton into a single, trackable value.
+- Each event gets its own dedicated `Cable` resource (no more re-opening the same singleton autoload script for the 50th time to add another event)
+- `Cable` resources can be renamed freely without breaking code references (no more find / replace of `AutoloadClass.some_signal_name_that_changed`)
+- Easily search for `Cable` event usage via Godot's built-in `Right Click > View Owners...` resource option
+- Carry atomic data between scene reloads (Resources _are_ singletons, so they outlive the scene tree!)
+- Easily test scenes in isolation (connecting to a `Cable` with no producers causes it to be _inert_ rather than exploding with undefined references)
 
-## What does this addon fix?
+## Example Usage
 
-- Signal connections no longer broken by function renaming
-- Signal connections no longer broken by adding or deleting nodes
-- Eliminates reference race conditions by forcing scripts to account for cases where a resource might not exist
-- Allows for reference hot-swapping (e.g. replace all refrences to `ManagerScriptA` with `ManagerScriptB` seamlessly)
-- `Cable` event resources can be renamed freely, and all references will automatically get updated (no more crawling through your scripts an renaming functions)
+The general flow for usage is:
 
+1. Right-click on any folder in the `FileSystem` tab > `Create New` > `Resource...`
+2. Search for `Cable` > click `Create`
+3. Name your Cable something useful like `player_death_event_cable.tres` or `player_health_value_cable.tres`
+4. Produce values on the cable - this can be done by either using the `CableValueProducer` node for primitive values like `float`,`string`,`int`,`bool` etc, or using the `CableNodeValueProducer` node to emit `Node` references on the cable. (NOTE: the producer should generally be a child of the node that is producing the value)
+5. Consume values from the cable - this can be done by adding the `CableValueConsumer` node as a child of the node that wishes to consume value updates
 
-## Usage
+See the scenes in the `examples` folder for more granular details
 
-### Cable
+## Usage Best Practices
 
-Whenever you are about to make a singleton script that has a signal on it, throw away that singleton script and make a `Cable` instead.
+It is best to use `Cable` resources for _global_ state, such has passing data to UI components (e.g. player health ratio to a healthbar widget) or sharing atomic data like enemy count, number of coins, or even a shared node reference to a manager script that holds these.
 
-### CableListener
-
-Watch `Cable` events with a `CableListener` node - simply add the listener node to a scene prefab and connect to its `next` signal.
-
-### CableEmitter
-
-Notify listeners that one of your manager/controller scripts is available for use. This also has the added benefit of being able
-to swap out script instance refs as needed.
-
-## Best Practices
-
-- In general, scenes should not reach outside of their own "scope". For example, if you have a "coin" scene, and it needs to update a counter when it is clicked, the _counter_ should be a `Cable` value.
-
-- `CableEmitter` instances should only point to top-level, long-lived controllers or nodes like `Camera2D` or some player save data script
-
-- `CableListener` signal hooks should not be bound to outside of their scene scope - this would defeat the purpose of using cables at all.
-
-## Examples
-
-See the `coin_collector` example in this repo to see how the UI can be bound to a score event cable.
+You should _not_ use `Cable` resources when transferring **local** state, such as watching a single monster's `CollisionShape2D.area_entered` event to apply damage to the monster (e.g., multiple instances of the monster scene will all broadcast on the same assigned `Cable` resource).
