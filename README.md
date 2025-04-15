@@ -15,7 +15,7 @@ on using Unity `ScriptableObject`s as an alternative to singletons.
 - Carry atomic data between scene reloads (Resources _are_ singletons, so they outlive the scene tree!)
 - Easily test scenes in isolation (connecting to a `Cable` with no producers causes it to be _inert_ rather than exploding with undefined references)
 
-## Example Usage
+## Usage
 
 The general flow for usage is:
 
@@ -27,7 +27,7 @@ The general flow for usage is:
 
 See the `examples` folder for more granular implementation details
 
-## Usage Best Practices
+## Best Practices
 
 It is best to use `Cable` resources for _global_ state, such has passing data to UI components (e.g. player health ratio to a healthbar widget) or sharing atomic data like enemy count, number of coins, or even a shared node reference to a manager script that holds these.
 
