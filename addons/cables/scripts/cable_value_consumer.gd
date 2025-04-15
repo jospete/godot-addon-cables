@@ -9,6 +9,9 @@ signal value_updated(value: Variant)
 ## Emits when the `input` cable emits a `VOID_EVENT`
 signal void_update()
 
+## Emits when either a value update or void update occurs
+signal any_update()
+
 ## The Cable to forward events from
 @export var input: Cable
 
@@ -17,6 +20,7 @@ func _ready() -> void:
 	input.link_until_destroyed(self, _on_cable_value_update)
 
 func _on_cable_value_update(value: Variant) -> void:
+	any_update.emit()
 	if Cable.is_void_event(value):
 		input.debug_log("Consumer<%s> void_update()" % str(self))
 		void_update.emit()

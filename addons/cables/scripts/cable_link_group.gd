@@ -16,5 +16,6 @@ func collect(unlink_actions: Array[Callable]) -> Callable:
 ## Unlinks all currently registered `link()` calls.
 func unlink_all() -> void:
 	for c in _actions:
-		c.call()
+		if c is Callable:
+			c.call()
 	_actions.clear()

@@ -17,6 +17,9 @@ func _notification(what: int) -> void:
 ## If a the given node already has a child node that is
 ## a `NodeWithLifetime` instance, this will re-use that node.
 static func from(node: Node) -> NodeWithLifetime:
+	if node is NodeWithLifetime:
+		return node as NodeWithLifetime
+	
 	var result: NodeWithLifetime = null
 	
 	for c in node.get_children():

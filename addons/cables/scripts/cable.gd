@@ -14,7 +14,7 @@ static func is_void_event(value: Variant) -> bool:
 	return typeof(value) == typeof(VOID_EVENT) and value == VOID_EVENT
 
 var _current_value: Variant = null
-var _did_emit_once: bool = false
+var _did_notify_once: bool = false
 
 # Core signal event that this cable wraps.
 # This should not be used directly - instead, use the
@@ -39,8 +39,12 @@ signal _value_updated(value: Variant)
 
 ## True if this Cable has emitted at least one value.
 ## This will help determine when the value should be replayed.
+var did_notify_once: bool:
+	get: return _did_notify_once
+
+## Alias of `did_notify_once`
 var did_emit_once: bool:
-	get: return _did_emit_once
+	get: return did_notify_once
 
 ## The last emitted value.
 ## This can be compared against the value received from `link()` where
@@ -57,7 +61,7 @@ func debug_log(message: String) -> void:
 func notify(value: Variant) -> void:
 	_value_updated.emit(value)
 	_current_value = value
-	_did_emit_once = true
+	_did_notify_once = true
 
 ## Produce a special `VOID_EVENT` value to to any `CableValueConsumer` instances.
 ## This should be used if the cable is intended to be strictly an event producer,
@@ -84,7 +88,7 @@ func link(callable: Callable) -> Callable:
 		debug_log("link")
 		_value_updated.connect(callable)
 	
-	if replay_on_link and did_emit_once:
+	if replay_on_link and did_notify_once:
 		debug_log("replay_on_link")
 		callable.call(current_value)
 	
