@@ -4,16 +4,16 @@
 @icon("res://addons/cables/icons/producer-icon.svg")
 class_name CableNodeValueProducer extends CableValueProducer
 
-## Optional - the node to be broadcast on the assigned `outlet` Cable.
-## Can also be updated at runtime via `notify_target_updated()`.
+## Optional - the node to be broadcast on the assigned `output` Cable.
+## Can also be updated at runtime via `send_node_value_update()`.
 @export var node_value: Node = null
 
-## Indicates that the `target` should be broadcast on the given `outlet`
+## Indicates that the `target` should be broadcast on the given `output`
 ## as soon as it becomes ready. This should be `true` in most cases,
 ## especially when `target` is set in the editor and not at runtime.
 @export var notify_on_node_value_ready := true
 
-## Indicates that the value on the given `outlet` should be cleared when
+## Indicates that the value on the given `output` should be cleared when
 ## _this_ node is destroyed (NOT the `target` node).
 ##
 ## This node should generally be a child or sibling of the `target` in
@@ -34,16 +34,17 @@ func _ready() -> void:
 	if clear_on_destroy:
 		node_destroyed.connect(send_node_value_clear)
 
-## Broadcasts `node` on the currently assigned `outlet`.
+## Broadcasts `node` on the currently assigned `output`.
 func send_node_value_update(node: Node) -> void:
+	node_value = node
 	send_value_update(node)
 
-## Broadcasts the current `target` value on the given `outlet`.
-## Triggered automatically when `notify_on_target_ready` is true.
+## Broadcasts the current `node_value` value on the given `output`.
+## Triggered automatically when `notify_on_node_value_ready` is true.
 func send_node_value() -> void:
 	send_node_value_update(node_value)
 
-## Broadcasts `null` on the currently assigned `outlet`.
+## Broadcasts `null` on the currently assigned `output`.
 ## Triggered automatically when `clear_on_destroy` is true.
 func send_node_value_clear() -> void:
 	send_node_value_update(null)
