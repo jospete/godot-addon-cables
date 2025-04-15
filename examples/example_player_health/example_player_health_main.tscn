@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://b00fs6fovxbjv" path="res://examples/example_player_health/example_player_health_main.gd" id="1_6ttur"]
 [ext_resource type="PackedScene" uid="uid://sng1y5vwvw0o" path="res://examples/example_player_health/player/player.tscn" id="1_tsfpc"]
 [ext_resource type="PackedScene" uid="uid://de3pkgvpfiv3e" path="res://examples/example_player_health/health_bar/health_bar.tscn" id="2_duju2"]
-[ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/player/player_death_event_cable.tres" id="2_gvdmc"]
-[ext_resource type="Resource" uid="uid://0dtjol5kij18" path="res://examples/example_player_health/player/reload_game_event_cable.tres" id="2_wa4b1"]
-[ext_resource type="Resource" uid="uid://ohsw380tjikd" path="res://examples/example_player_health/player/player_node_value_cable.tres" id="2_yoqrv"]
+[ext_resource type="Resource" uid="uid://0dtjol5kij18" path="res://examples/example_player_health/cables/reload_game_event.tres" id="2_wa4b1"]
+[ext_resource type="Resource" uid="uid://ohsw380tjikd" path="res://examples/example_player_health/cables/player_node_value.tres" id="2_yoqrv"]
 [ext_resource type="PackedScene" uid="uid://wwt8j4xdtq71" path="res://examples/example_player_health/instructions_ui/instructions_ui.tscn" id="3_qrmmq"]
-[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/cable_value_consumer.gd" id="3_uu8fu"]
-[ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/player/player_health_ratio_value_cable.tres" id="4_6ttur"]
-[ext_resource type="Script" uid="uid://ooqrpwvnhwer" path="res://addons/cables/cable_value_producer.gd" id="8_iyk6x"]
+[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/cable_value_consumer.gd" id="3_uu8fu"]
+[ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/cables/player_health_ratio_value.tres" id="7_64b3h"]
+[ext_resource type="Script" uid="uid://ooqrpwvnhwer" path="res://addons/cables/scripts/cable_value_producer.gd" id="8_iyk6x"]
+[ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/cables/player_death_event.tres" id="9_5asa8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvdmc"]
 bg_color = Color(0, 0, 0, 0.164706)
@@ -45,7 +45,7 @@ foreground_color = Color(1, 0, 0, 1)
 
 [node name="HealthRatioConsumer" type="Node" parent="CanvasLayer/CanvasLayoutRoot/HealthBar"]
 script = ExtResource("3_uu8fu")
-ingress = ExtResource("4_6ttur")
+input = ExtResource("7_64b3h")
 metadata/_custom_type_script = "uid://duwq1cmdr5cie"
 
 [node name="InstructionsUI" parent="CanvasLayer/CanvasLayoutRoot" instance=ExtResource("3_qrmmq")]
@@ -100,14 +100,14 @@ text = "Reload"
 
 [node name="ReloadSceneProducer" type="Node" parent="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button"]
 script = ExtResource("8_iyk6x")
-outlet = ExtResource("2_wa4b1")
+output = ExtResource("2_wa4b1")
 metadata/_custom_type_script = "uid://ooqrpwvnhwer"
 
-[node name="CableValueConsumer" type="Node" parent="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay"]
+[node name="PlayerDeathEventConsumer" type="Node" parent="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay"]
 script = ExtResource("3_uu8fu")
-ingress = ExtResource("2_gvdmc")
+input = ExtResource("9_5asa8")
 metadata/_custom_type_script = "uid://duwq1cmdr5cie"
 
 [connection signal="value_updated" from="CanvasLayer/CanvasLayoutRoot/HealthBar/HealthRatioConsumer" to="CanvasLayer/CanvasLayoutRoot/HealthBar" method="set_fill_amount"]
-[connection signal="pressed" from="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button/ReloadSceneProducer" method="void_notify"]
-[connection signal="void_update" from="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/CableValueConsumer" to="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay" method="show"]
+[connection signal="pressed" from="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Button/ReloadSceneProducer" method="send_void_update"]
+[connection signal="void_update" from="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay/PlayerDeathEventConsumer" to="CanvasLayer/CanvasLayoutRoot/PlayerDeadOverlay" method="show"]

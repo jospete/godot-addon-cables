@@ -1,6 +1,7 @@
 ## A resource-based signal type.
 ## Bridges the gap between scene assets, and fixes the issue of
 ## signal connections getting broken when rearranging scenes.
+@icon("res://addons/cables/icons/cable-icon.svg")
 class_name Cable extends Resource
 
 ## Special value to indicate `void_notify()` was called.
@@ -104,7 +105,7 @@ func unlink(callable: Callable) -> void:
 ##
 ## This is a more optimal alternative to `tree_enterd` / `tree_exiting` events,
 ## which may fire multiple times if a node is reparented one or more times.
-func link_to_node_lifetime(node: NodeWithLifetime, callable: Callable) -> void:
-	debug_log("link_to_node_lifetime(%s)" % node.name)
+func link_until_destroyed(node: NodeWithLifetime, callable: Callable) -> void:
+	debug_log("link_until_destroyed(%s)" % node.name)
 	var unlink_action := link(callable)
 	node.node_destroyed.connect(unlink_action)

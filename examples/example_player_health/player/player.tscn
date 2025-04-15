@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://2eh3si88jcuk" path="res://icon.svg" id="1_d3pue"]
 [ext_resource type="Script" uid="uid://ggqekpog3au7" path="res://examples/example_player_health/player/player.gd" id="1_jlljf"]
-[ext_resource type="Resource" uid="uid://bcjc2nyi2ww2a" path="res://examples/example_player_health/player/player_health_value_cable.tres" id="2_ocgkk"]
+[ext_resource type="Resource" uid="uid://bcjc2nyi2ww2a" path="res://examples/example_player_health/cables/player_health_value.tres" id="2_ocgkk"]
 [ext_resource type="PackedScene" uid="uid://de3pkgvpfiv3e" path="res://examples/example_player_health/health_bar/health_bar.tscn" id="2_vfw5m"]
-[ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/player/player_health_ratio_value_cable.tres" id="3_chn35"]
-[ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/player/player_death_event_cable.tres" id="4_r27ug"]
-[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/cable_value_consumer.gd" id="7_r27ug"]
-[ext_resource type="Script" uid="uid://bt35u37mtv1o6" path="res://addons/cables/cable_node_value_producer.gd" id="8_fnp1p"]
-[ext_resource type="Resource" uid="uid://ohsw380tjikd" path="res://examples/example_player_health/player/player_node_value_cable.tres" id="9_ryx1w"]
+[ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/cables/player_health_ratio_value.tres" id="3_chn35"]
+[ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/cables/player_death_event.tres" id="4_r27ug"]
+[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/cable_value_consumer.gd" id="7_r27ug"]
+[ext_resource type="Script" uid="uid://bx76g3c6nnl1d" path="res://addons/cables/scripts/cable_node_value_producer.gd" id="8_llqhw"]
+[ext_resource type="Resource" uid="uid://ohsw380tjikd" path="res://examples/example_player_health/cables/player_node_value.tres" id="9_ryx1w"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_jlljf")
@@ -27,13 +27,13 @@ offset_bottom = -88.0
 
 [node name="HealthRatioConsumer" type="Node" parent="HealthBar"]
 script = ExtResource("7_r27ug")
-ingress = ExtResource("3_chn35")
+input = ExtResource("3_chn35")
 metadata/_custom_type_script = "uid://duwq1cmdr5cie"
 
-[node name="MainPlayerValueProducer" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("8_fnp1p")
-target = NodePath("..")
-outlet = ExtResource("9_ryx1w")
-metadata/_custom_type_script = "uid://bt35u37mtv1o6"
+[node name="CableNodeValueProducer" type="Node" parent="." node_paths=PackedStringArray("node_value")]
+script = ExtResource("8_llqhw")
+node_value = NodePath("..")
+output = ExtResource("9_ryx1w")
+metadata/_custom_type_script = "uid://bx76g3c6nnl1d"
 
 [connection signal="value_updated" from="HealthBar/HealthRatioConsumer" to="HealthBar" method="set_fill_amount"]
