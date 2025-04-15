@@ -21,11 +21,11 @@ The general flow for usage is:
 
 1. Right-click on any folder in the `FileSystem` tab > `Create New` > `Resource...`
 2. Search for `Cable` > click `Create`
-3. Name your Cable something useful like `player_death_event_cable.tres` or `player_health_value_cable.tres`
-4. Produce values on the cable - this can be done by either using the `CableValueProducer` node for primitive values like `float`,`string`,`int`,`bool` etc, or using the `CableNodeValueProducer` node to emit `Node` references on the cable. (NOTE: the producer should generally be a child of the node that is producing the value)
+3. Name your Cable something useful like `player_death_event.tres` or `player_health_value.tres`
+4. Produce values on the cable - this can be done by either producing a value on a `Cable` directly via `notify()` (e.g. for primitive values like `float`,`string`,`int`,`bool` etc), or using the `CableNodeValueProducer` node to emit `Node` references on the cable. (NOTE: the producer should generally be a child of the node that is producing the value)
 5. Consume values from the cable - this can be done by adding the `CableValueConsumer` node as a child of the node that wishes to consume value updates
 
-See the scenes in the `examples` folder for more granular details
+See the `examples` folder for more granular implementation details
 
 ## Usage Best Practices
 
