@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbuy0tacpqbq6" path="res://examples/example_coin_collector/counter_display/counter_display.gd" id="1_bkxt3"]
 [ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/cable_value_consumer.gd" id="2_giypm"]
-[ext_resource type="Resource" uid="uid://dsgcjj0o1cabr" path="res://examples/example_coin_collector/score.tres" id="3_jpfne"]
+[ext_resource type="Resource" uid="uid://dsgcjj0o1cabr" path="res://examples/example_coin_collector/cables/score.tres" id="3_jpfne"]
 
 [node name="CounterDisplay" type="Node2D"]
 script = ExtResource("1_bkxt3")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2u80gqc2amwg"]
+[gd_scene load_steps=14 format=3 uid="uid://2u80gqc2amwg"]
 
 [ext_resource type="Script" uid="uid://b00fs6fovxbjv" path="res://examples/example_player_health/example_player_health_main.gd" id="1_6ttur"]
 [ext_resource type="PackedScene" uid="uid://sng1y5vwvw0o" path="res://examples/example_player_health/player/player.tscn" id="1_tsfpc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/cables/player_health_ratio_value.tres" id="7_64b3h"]
 [ext_resource type="Script" uid="uid://ooqrpwvnhwer" path="res://addons/cables/scripts/cable_value_producer.gd" id="8_iyk6x"]
 [ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/cables/player_death_event.tres" id="9_5asa8"]
+[ext_resource type="PackedScene" uid="uid://byl8ih2wg4vq" path="res://examples/example_player_health/death_counter_ui/death_counter_ui.tscn" id="9_jbrqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvdmc"]
 bg_color = Color(0, 0, 0, 0.164706)
@@ -52,6 +53,8 @@ metadata/_custom_type_script = "uid://duwq1cmdr5cie"
 layout_mode = 1
 offset_left = 622.0
 offset_bottom = -578.0
+
+[node name="DeathCounterUI" parent="CanvasLayer/CanvasLayoutRoot" instance=ExtResource("9_jbrqe")]
 
 [node name="PlayerDeadOverlay" type="Control" parent="CanvasLayer/CanvasLayoutRoot"]
 visible = false

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://byl8ih2wg4vq"]
+
+[ext_resource type="Script" uid="uid://broodmpacl8cf" path="res://examples/example_player_health/death_counter_ui/death_counter_ui.gd" id="1_sc1ud"]
+[ext_resource type="Resource" uid="uid://bsfmkg43jadv2" path="res://examples/example_player_health/cables/player_death_count.tres" id="2_27x7e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_64b3h"]
+font_size = 42
+
+[node name="DeathCounterUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 483.0
+offset_bottom = 146.0
+script = ExtResource("1_sc1ud")
+death_count_cable = ExtResource("2_27x7e")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Deaths: 0"
+label_settings = SubResource("LabelSettings_64b3h")
+horizontal_alignment = 1
+vertical_alignment = 1

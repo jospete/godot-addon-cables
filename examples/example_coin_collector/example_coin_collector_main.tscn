@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca1ui4125yrmr"]
+[gd_scene load_steps=3 format=3 uid="uid://ca1ui4125yrmr"]
 
 [ext_resource type="PackedScene" uid="uid://cc2a7d32qcv7k" path="res://examples/example_coin_collector/counter_display/counter_display.tscn" id="1_p5p1k"]
-[ext_resource type="Script" uid="uid://wybytpojl34v" path="res://examples/example_coin_collector/coin_spawner.gd" id="2_q1r7i"]
-[ext_resource type="PackedScene" uid="uid://dxsvrkyyodmer" path="res://examples/example_coin_collector/coin/coin.tscn" id="3_2fq5a"]
+[ext_resource type="PackedScene" uid="uid://6rjep2o5888m" path="res://examples/example_coin_collector/coin_spawner/coin_spawner.tscn" id="2_k37sf"]
 
 [node name="ExampleCoinCollectorMain" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1158, 641)
 zoom = Vector2(0.5, 0.5)
+
+[node name="CoinSpawner" parent="." instance=ExtResource("2_k37sf")]
+position = Vector2(1200, 600)
 
 [node name="UI" type="VBoxContainer" parent="."]
 offset_left = 59.0
@@ -17,14 +19,3 @@ offset_right = 183.0
 offset_bottom = 110.0
 
 [node name="CounterDisplay" parent="UI" instance=ExtResource("1_p5p1k")]
-
-[node name="CoinSpawner" type="Node2D" parent="."]
-position = Vector2(1200, 600)
-script = ExtResource("2_q1r7i")
-coin_prefab = ExtResource("3_2fq5a")
-spawn_radius = 500.0
-
-[node name="CoinSpawnTimer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="timeout" from="CoinSpawnTimer" to="CoinSpawner" method="spawn"]

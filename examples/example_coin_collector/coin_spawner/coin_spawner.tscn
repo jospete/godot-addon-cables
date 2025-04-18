@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://6rjep2o5888m"]
+
+[ext_resource type="Script" uid="uid://wybytpojl34v" path="res://examples/example_coin_collector/coin_spawner/coin_spawner.gd" id="1_ax6cp"]
+[ext_resource type="PackedScene" uid="uid://dxsvrkyyodmer" path="res://examples/example_coin_collector/coin/coin.tscn" id="2_i0s4k"]
+
+[node name="CoinSpawner" type="Node2D"]
+script = ExtResource("1_ax6cp")
+coin_prefab = ExtResource("2_i0s4k")
+spawn_radius = 500.0
+
+[node name="CoinSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="CoinSpawnTimer" to="." method="spawn"]

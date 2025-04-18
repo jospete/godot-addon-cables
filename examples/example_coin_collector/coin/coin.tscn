@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://dxsvrkyyodmer"]
 
 [ext_resource type="Script" uid="uid://fjeh6dmdmygg" path="res://examples/example_coin_collector/coin/coin.gd" id="1_qxoxu"]
-[ext_resource type="Resource" uid="uid://dsgcjj0o1cabr" path="res://examples/example_coin_collector/score.tres" id="2_i4pd0"]
-[ext_resource type="Texture2D" uid="uid://b1tp66bls1iba" path="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 1.png" id="3_2aood"]
-[ext_resource type="Texture2D" uid="uid://b42r5c6ay8hxa" path="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 2.png" id="4_vp585"]
-[ext_resource type="Texture2D" uid="uid://co3wh46273xxw" path="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 3.png" id="5_k2owh"]
-[ext_resource type="Texture2D" uid="uid://cybe8rd88giqv" path="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 4.png" id="6_rn0jh"]
-[ext_resource type="Texture2D" uid="uid://7jsvg30bw8dj" path="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 5.png" id="7_rueul"]
-[ext_resource type="Texture2D" uid="uid://bg3w4xndondso" path="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 6.png" id="8_t2h60"]
+[ext_resource type="Resource" uid="uid://dsgcjj0o1cabr" path="res://examples/example_coin_collector/cables/score.tres" id="2_i4pd0"]
+[ext_resource type="Texture2D" uid="uid://b1tp66bls1iba" path="res://examples/example_coin_collector/coin/star coin rotate 1.png" id="3_2aood"]
+[ext_resource type="Texture2D" uid="uid://b42r5c6ay8hxa" path="res://examples/example_coin_collector/coin/star coin rotate 2.png" id="4_vp585"]
+[ext_resource type="Texture2D" uid="uid://co3wh46273xxw" path="res://examples/example_coin_collector/coin/star coin rotate 3.png" id="5_k2owh"]
+[ext_resource type="Texture2D" uid="uid://cybe8rd88giqv" path="res://examples/example_coin_collector/coin/star coin rotate 4.png" id="6_rn0jh"]
+[ext_resource type="Texture2D" uid="uid://7jsvg30bw8dj" path="res://examples/example_coin_collector/coin/star coin rotate 5.png" id="7_rueul"]
+[ext_resource type="Texture2D" uid="uid://bg3w4xndondso" path="res://examples/example_coin_collector/coin/star coin rotate 6.png" id="8_t2h60"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5slf"]
 radius = 59.0762

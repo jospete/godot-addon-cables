@@ -11,13 +11,8 @@ func _on_character_body_2d_input_event(_viewport, event, _shape_idx):
 	if not _clicked and event.is_action_pressed("left_click"):
 		notify_click()
 
-func get_current_count() -> int:
-	if count_cable.did_emit_once:
-		return count_cable.current_value
-	return 0
-
 func notify_click():
 	_clicked = true
-	var value = get_current_count() + 1
+	var value = count_cable.get_value_or_default(0) + 1
 	count_cable.notify(value)
 	queue_free()

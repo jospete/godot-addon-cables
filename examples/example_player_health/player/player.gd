@@ -7,6 +7,7 @@ class_name Player extends Node2D
 @export var health_value_cable: Cable
 @export var health_ratio_value_cable: Cable
 @export var death_event_cable: Cable
+@export var death_count_cable: Cable
 
 var health: float
 
@@ -32,3 +33,5 @@ func take_damage(damage: float) -> void:
 	
 	if dead:
 		death_event_cable.void_notify()
+		var updated_death_count = death_count_cable.get_value_or_default(0) + 1
+		death_count_cable.notify(updated_death_count)

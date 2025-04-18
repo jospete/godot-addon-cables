@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b42r5c6ay8hxa"
-path="res://.godot/imported/star coin rotate 2.png-2892b87a56763b834866811d33cf46e6.ctex"
+path="res://.godot/imported/star coin rotate 2.png-32f8691291f06829c18243e914eb311c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://examples/example_coin_collector/graphics/star_coin_rotate/star coin rotate 2.png"
-dest_files=["res://.godot/imported/star coin rotate 2.png-2892b87a56763b834866811d33cf46e6.ctex"]
+source_file="res://examples/example_coin_collector/coin/star coin rotate 2.png"
+dest_files=["res://.godot/imported/star coin rotate 2.png-32f8691291f06829c18243e914eb311c.ctex"]
 
 [params]
 
