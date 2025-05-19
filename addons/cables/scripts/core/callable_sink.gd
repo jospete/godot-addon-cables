@@ -33,7 +33,7 @@ func aggregate(unlink_actions: Array[Callable]) -> Callable:
 	return call_each_and_clear
 
 ## Similar to [method aggregate], but deregisters any currently
-## registered [code]Callable[/code]s via [method unlink_all]
+## registered [code]Callable[/code]s via [method call_each_and_clear]
 ## before appending the given [param unlink_actions] to this group.
 ## [br][br]
 ## Call this when you intend to re-use an existing [CallableSink]

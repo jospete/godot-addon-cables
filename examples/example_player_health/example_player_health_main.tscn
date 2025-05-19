@@ -6,9 +6,9 @@
 [ext_resource type="Resource" uid="uid://0dtjol5kij18" path="res://examples/example_player_health/cables/reload_game_event.tres" id="2_wa4b1"]
 [ext_resource type="Resource" uid="uid://ohsw380tjikd" path="res://examples/example_player_health/cables/player_node_value.tres" id="2_yoqrv"]
 [ext_resource type="PackedScene" uid="uid://wwt8j4xdtq71" path="res://examples/example_player_health/instructions_ui/instructions_ui.tscn" id="3_qrmmq"]
-[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/cable_value_consumer.gd" id="3_uu8fu"]
+[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/core/cable_value_consumer.gd" id="3_uu8fu"]
 [ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/cables/player_health_ratio_value.tres" id="7_64b3h"]
-[ext_resource type="Script" uid="uid://ooqrpwvnhwer" path="res://addons/cables/scripts/cable_value_producer.gd" id="8_iyk6x"]
+[ext_resource type="Script" uid="uid://ooqrpwvnhwer" path="res://addons/cables/scripts/core/cable_value_producer.gd" id="8_iyk6x"]
 [ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/cables/player_death_event.tres" id="9_5asa8"]
 [ext_resource type="PackedScene" uid="uid://byl8ih2wg4vq" path="res://examples/example_player_health/death_counter_ui/death_counter_ui.tscn" id="9_jbrqe"]
 

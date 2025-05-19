@@ -47,10 +47,6 @@ signal _value_updated(value: Variant)
 var did_notify_once: bool:
 	get: return _did_notify_once
 
-## Alias of [member did_notify_once]
-var did_emit_once: bool:
-	get: return did_notify_once
-
 ## The last emitted value.
 ## [br][br]
 ## This can be compared against the value received from [method link] where

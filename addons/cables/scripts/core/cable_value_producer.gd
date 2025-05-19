@@ -1,5 +1,6 @@
 ## Plug-and-play transformer for Cables that forwards
 ## local send calls onto the target [member output] [Cable].
+@tool
 @icon("res://addons/cables/icons/producer-icon.svg")
 class_name CableValueProducer extends NodeWithLifetime
 
@@ -16,3 +17,9 @@ func send_value_update(value: Variant) -> void:
 func send_void_update() -> void:
 	output.debug_log("Producer<%s> send_void_update()" % str(self))
 	output.void_notify()
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	if output == null:
+		warnings.append("Output cable not assigned")
+	return warnings

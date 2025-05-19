@@ -14,6 +14,7 @@
 ##     ])
 ##
 ## [/codeblock]
+@tool
 @icon("res://addons/cables/icons/consumer-icon.svg")
 class_name CableValueConsumer extends NodeWithLifetime
 
@@ -41,3 +42,9 @@ func _on_cable_value_update(value: Variant) -> void:
 	else:
 		input.debug_log("Consumer<%s> value_updated(%s)" % [str(self), str(value)])
 		value_updated.emit(value)
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	if input == null:
+		warnings.append("Input cable not assigned")
+	return warnings

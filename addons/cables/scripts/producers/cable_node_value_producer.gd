@@ -2,6 +2,7 @@
 ##
 ## This class will track the lifetime of the referenced node,
 ## and emit a "cleared" event automatically to avoid reference-after-frees.
+@tool
 @icon("res://addons/cables/icons/producer-icon.svg")
 class_name CableNodeValueProducer extends CableValueProducer
 

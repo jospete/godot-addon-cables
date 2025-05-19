@@ -7,8 +7,8 @@
 [ext_resource type="Resource" uid="uid://dlnawr615ygv2" path="res://examples/example_player_health/cables/player_health_ratio_value.tres" id="3_chn35"]
 [ext_resource type="Resource" uid="uid://bjgj4ix7nkmyv" path="res://examples/example_player_health/cables/player_death_event.tres" id="4_r27ug"]
 [ext_resource type="Resource" uid="uid://bsfmkg43jadv2" path="res://examples/example_player_health/cables/player_death_count.tres" id="5_e2vs3"]
-[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/cable_value_consumer.gd" id="7_r27ug"]
-[ext_resource type="Script" uid="uid://bx76g3c6nnl1d" path="res://addons/cables/scripts/cable_node_value_producer.gd" id="8_llqhw"]
+[ext_resource type="Script" uid="uid://duwq1cmdr5cie" path="res://addons/cables/scripts/core/cable_value_consumer.gd" id="7_r27ug"]
+[ext_resource type="Script" uid="uid://bx76g3c6nnl1d" path="res://addons/cables/scripts/producers/cable_node_value_producer.gd" id="8_llqhw"]
 [ext_resource type="Resource" uid="uid://ohsw380tjikd" path="res://examples/example_player_health/cables/player_node_value.tres" id="9_ryx1w"]
 
 [node name="Player" type="Node2D"]
